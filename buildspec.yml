@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+
+  pre_build:
+    commands:
+      - echo Running tests
+      - npm install
+      - npm test
+
+  build:
+    commands:
+      - echo Building for production
+      - rm -rf node_modules
+      - npm install --production
+
+artifacts:
+  files:
+    - "**/*"
+  name: MyMegaApp-$(date +%Y-%m-%d) 
